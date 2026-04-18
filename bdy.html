@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Happy Birthday 🎉</title>
+
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        *{ margin: 0;
+        padding: 0;
+        box-sizing: border-box;}
+        html,body {
+            height: 100%;
+            width: 100%;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .page {
+    display: none;
+    height: 100vh;
+    width: 100%;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.active {
+    display: flex;
+}
+h1 {
+    font-size: 6vw; /* auto adjust */
+    text-align: center;
+}
+button {
+    padding: 12px 25px;
+    font-size: 4vw;
+    border-radius: 10px;
+}
+@media (max-width: 600px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
+#page1, #page2, #page3, #page4 {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+       body {
+    font-family: Arial;
+    text-align: center;
+    overflow: hidden;
+    color: white;
+}
+      #page1 {
+    background: url("https://m.media-amazon.com/images/I/81Lgjv5QChL.jpg") no-repeat center center/cover;
+    height: 100vh;
+}
+
+#page2 {
+    background: url("img.jpeg") no-repeat center center/cover;
+    height: 100vh;
+}
+#page3 {
+    background: url("img.jpeg") no-repeat center center/cover;
+    height: 100vh;
+}
+#page4 {
+    background: url("img.jpeg") no-repeat center center/cover;
+    height: 100vh;
+}
+        .page { display: none; }
+        .active { display: block; }
+
+        h1 {
+    font-size: 42px;
+    font-weight: bold;
+    margin-top: 30px;
+
+    background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet);
+    background-size: 800% 800%;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: rainbowMove 6s ease infinite;
+
+    text-shadow: 0px 0px 15px rgba(255,255,255,0.3);
+}
+
+@keyframes rainbowMove {
+    0% { background-position: 0% }
+    50% { background-position: 100% }
+    100% { background-position: 0% }
+}
+h2 {
+    margin: 20px;
+    color: #f5f5f5; /* off-white */
+    font-size: 20px;
+    line-height: 1.6;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+}
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            margin: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+        }
+
+        #yesBtn { background: #4CAF50; color: white; }
+        #noBtn {
+            background: red;
+            color: white;
+            position: absolute;
+        }
+
+        #surpriseBtn {
+            background: purple;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-happyrock.mp3">
+</audio>
+
+<!-- PAGE 1 -->
+<div id="page1" class="page active">
+    <h1 id="typing1"></h1>
+    <h2 id="typing2"></h2>
+    <button onclick="startExperience()">Start 🎶</button>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+    <h1>Any plans for your birthday? 🤔</h1>
+    <button id="yesBtn" onclick="yesClicked()">Yes 😎</button>
+    <button id="noBtn">No 😅</button>
+</div>
+
+<!-- PAGE 3 -->
+<div id="page3" class="page">
+    <h1>That’s awesome! 🎉</h1>
+    <button id="surpriseBtn" onclick="showSurprise()">Click for Surprise 🎁</button>
+</div>
+
+<!-- PAGE 4 -->
+<div id="page4" class="page">
+    <h1 id="typing3"></h1>
+    <h2 id="typing4"></h2>
+</div>
+
+<script>
+const music = document.getElementById("music");
+
+function typeText(id, text, speed=100) {
+    let i = 0;
+    let el = document.getElementById(id);
+    el.innerHTML = "";
+
+    function typing() {
+        if (i < text.length) {
+            el.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typing, speed);
+        }
+    }
+    typing();
+}
+
+function startExperience() {
+    music.play();
+
+    document.getElementById("page1").classList.remove("active");
+    document.getElementById("page2").classList.add("active");
+
+    launchConfetti();
+
+    typeText("typing1", "🎉 Happy Birthday My bestest Friend 🎂", 80);
+    typeText("typing2", "From childhood memories to today… you’ve always been special 😊", 35);
+}
+
+function yesClicked() {
+    document.getElementById("page2").classList.remove("active");
+    document.getElementById("page3").classList.add("active");
+
+    launchConfetti();
+}
+
+function showSurprise() {
+    document.getElementById("page3").classList.remove("active");
+    document.getElementById("page4").classList.add("active");
+
+    launchConfetti();
+
+    typeText("typing3", "🎊 A Letter From My Heart 🎊", 50);
+
+    typeText("typing4",
+`RESPECTEDDDDDDDD SIR JI ,
+
+Happy Birthday, meri life ke sabse special insaan 💛
+
+Sach bolu toh mujhe nahi pata main kaise itne saare feelings ek message mein fit karu… par phir bhi try kar rahi hoon, just like you always tried for me—perfectly, without complaints 🥹
+
+Thank you… sirf ek word hai, par iska weight bahut zyada hai. Thank you for helping me complete my course on time, jab mujhe khud par doubt tha tab aapne mujh par trust kiya. Thank you for that “bahut soch samajh ke diya hua” lucky plant 🌱—waise sach bataun, plant se zyada lucky toh main hoon jo aap meri life mein ho 😌
+
+aapne mere liye itna time spend kiya… itne games khele, itni hasi-mazaak kiya ki kabhi kabhi lagta hai hum log thode zyada hi free the 😂 but honestly, woh moments mere liye gold hain. aapne kabhi mujhe “no” nahi bola… chahe main sahi thi ya galat, aap hamesha mere saath khade rahe. Yeh cheez bahut rare hoti hai.( Vaise ye msg mai voice MSG me bol ri hu to isliye pure hindi me ho ra hai)
+
+Aur woh moments… jab main kisi ke saamne open nahi hona chahti thi, tab aapne bina force kiye, bina judge kiye, bas patiently meri baatein suni. aapne meri takleefein samajhne ki koshish ki… aur shayad wahi reason hai ki aap mere liye sirf best friend nahi ho, aap mera safe place ho.
+
+Mujhe pata hai aap meri khushi aur mental peace ke liye thoda door ja rahe ho… aur main yeh samajhti hoon. Par ek selfish si baat bolu? Mujhe aap saath rehna, aap saath time spend karna hi sabse zyada relief deta hai. Jab main low feel karti hoon, aap saath hi mujhe normal banata hai… aur haan, aap “eggless efforts” (😂 still funny) mere liye priceless hain.(yarrr btw maine try kiya acha page style ka par itna hi hora hai mujhse)
+
+You’ve become a very important part of my life—shayad usse bhi zyada, jitna main words mein explain kar paun.
+
+On your birthday, I wish you all the happiness, success, peace, and everything beautiful that you truly deserve. Bas ek promise karna… chahe life kitni bhi busy ho jaaye, thoda sa time mere liye hamesha rakhna ❤️
+
+Happy Birthday once again… aur haan, aaj cake aap khilao, main sirf khaungi 😌🎂
+
+Happy Birthday once again 🎂
+
+With lots of respect and friendship,
+Always with you 😊`,
+80);
+}
+
+function launchConfetti() {
+    confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 }
+    });
+}
+
+// NO button runs away 😂
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", () => {
+    let x = Math.random() * (window.innerWidth - 100);
+    let y = Math.random() * (window.innerHeight - 100);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+</script>
+
+</body>
+</html>
